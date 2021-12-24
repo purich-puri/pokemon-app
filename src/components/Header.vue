@@ -1,6 +1,12 @@
 <template>
   <div id="nav">
-    <img src="@/assets/pokeball-img.png" alt="pokemon logo" class="w-10 h-10" />
+    <router-link to="/">
+      <img
+        src="@/assets/pokeball-img.png"
+        alt="pokemon logo"
+        class="w-10 h-10"
+      />
+    </router-link>
     <div class="flex gap-2">
       <router-link to="/">HOME</router-link> |
       <router-link to="/about">ABOUT</router-link>

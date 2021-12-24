@@ -1,11 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import PokemonInfo from "../views/PokemonInfo.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/pokemon/:pkmnId",
+    name: "Pokemon",
+    component: PokemonInfo,
+    props: true,
   },
   {
     path: "/about",
