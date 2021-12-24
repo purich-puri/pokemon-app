@@ -6,11 +6,10 @@
         class="pkmn-data pointer"
         v-for="pkmn in pokemon"
         :key="pkmn.url.match(/\d+/g).join('').slice(1)"
-        @click="checkPkmn(pkmn.url)"
       >
         <router-link
           :to="{
-            name: 'Pokemon',
+            name: 'PokemonInfo',
             params: { pkmnId: pkmn.url.match(/\d+/g).join('').slice(1) },
           }"
         >
@@ -22,39 +21,23 @@
 </template>
 
 <script>
+import { reactive } from "@vue/reactivity";
 export default {
   name: "PokemonList",
-  props: {},
   components: {},
-  data() {
-    return {
+  methods: {},
+  setup() {
+    const state = reactive({
       pokemon: [],
-    };
-  },
-  methods: {
-    checkPkmn(e) {
-      console.log(e);
-      fetch(e)
-        .then((res) => res.json())
-        .then(() => {
-          // console.log(data);
-        })
-        .catch((error) => console.log(error));
-    },
+    });
 
-    async getPokemon() {
-      // fetch("https://pokeapi.co/api/v2/pokemon/")
-      // .then((res) => res.json)
-      // .then((data) => {
-      //   console.log()})
-      const res = await fetch("https://pokeapi.co/api/v2/pokemon/");
-      const { results } = await res.json();
-      console.log(results);
-      this.pokemon = results;
-    },
-  },
-  beforeMount() {
-    this.getPokemon();
+    fetch("https://pokeapi.co/api/v2/pokemon/")
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        state.pokemon = data.results;
+      });
+    return state;
   },
 };
 </script>

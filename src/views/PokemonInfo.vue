@@ -6,7 +6,7 @@
 import PokemonData from "../components/PokemonData.vue";
 
 export default {
-  name: "Pokemon",
+  name: "PokemonInfo",
   props: ["pkmnId"],
   components: {
     PokemonData,
