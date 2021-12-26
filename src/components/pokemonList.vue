@@ -3,7 +3,6 @@
     <h3 class="flex justify-center text-4xl">Pokedex</h3>
     <div class="list-of-pkmn">
       <div
-        class="pkmn-data pointer"
         v-for="pkmn in pokemon"
         :key="pkmn.url.match(/\d+/g).join('').slice(1)"
       >
@@ -13,7 +12,9 @@
             params: { pkmnId: pkmn.url.match(/\d+/g).join('').slice(1) },
           }"
         >
-          {{ pkmn.name }}
+          <div class="pkmn-data pointer">
+            {{ pkmn.name }}
+          </div>
         </router-link>
       </div>
     </div>
