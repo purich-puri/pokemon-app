@@ -2,17 +2,19 @@
   <div class="home">
     <h3 class="flex justify-center text-4xl">Pokedex</h3>
     <div class="list-of-pkmn">
-      <div
-        v-for="pkmn in pokemon"
-        :key="pkmn.url.match(/\d+/g).join('').slice(1)"
-      >
+      <div v-for="pkmn in pokemon" :key="pkmn.id">
         <router-link
           :to="{
             name: 'PokemonInfo',
-            params: { pkmnId: pkmn.url.match(/\d+/g).join('').slice(1) },
+            params: { pkmnId: pkmn.id },
           }"
         >
-          <div class="pkmn-data pointer">
+          <div class="pkmn-data cursor-pointer bounce">
+            <img
+              class="w-5/6 toBounce"
+              :src="require(`../assets/PkmnhomeVersion/${pkmn.id}.png`)"
+              alt=""
+            />
             {{ pkmn.name }}
           </div>
         </router-link>
@@ -25,8 +27,6 @@
 import { reactive } from "@vue/reactivity";
 export default {
   name: "PokemonList",
-  components: {},
-  methods: {},
   setup() {
     const state = reactive({
       pokemon: [],
@@ -35,9 +35,17 @@ export default {
     fetch("https://pokeapi.co/api/v2/pokemon/")
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        state.pokemon = data.results;
+        // console.log(data.results);
+        for (let pkmn = 0; pkmn < data.results.length; pkmn++) {
+          let obj = {};
+          obj["name"] = data.results[pkmn].name;
+          obj["id"] = data.results[pkmn].url.match(/\d+/g).join("").slice(1);
+          state.pokemon.push(obj);
+        }
+        //old code without using loop. does not seperate objects in array
+        // state.pokemon = data.results;
       });
+
     return state;
   },
 };
@@ -60,6 +68,7 @@ export default {
   margin: 5px;
   background-color: whitesmoke;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: 300ms;
@@ -70,7 +79,7 @@ export default {
   color: #fff;
 }
 
-.pointer {
-  cursor: pointer;
+.bounce:hover .toBounce {
+  -webkit-animation: bounce 1s infinite;
 }
 </style>
