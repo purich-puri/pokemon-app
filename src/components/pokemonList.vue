@@ -32,7 +32,7 @@ export default {
       pokemon: [],
     });
 
-    fetch("https://pokeapi.co/api/v2/pokemon/")
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data.results);
@@ -64,6 +64,7 @@ export default {
 .pkmn-data {
   width: 100px;
   height: 100px;
+  border-radius: 20%;
   padding: 5px;
   margin: 5px;
   background-color: whitesmoke;
