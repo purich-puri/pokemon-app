@@ -1,5 +1,5 @@
 <template>
-  <div>PURICHPURI &copy; 2021</div>
+  <div><a href="https://github.com/purich-puri">PURICHPURI &copy; 2021</a></div>
 </template>
 
 <style scoped>

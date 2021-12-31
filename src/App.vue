@@ -18,7 +18,7 @@ export default {
 };
 
 // npm run build
-// git add dist
+// git add --force dist
 // git commit -m 'adding dist subtree'
 // git subtree push --prefix dist origin gh-pages
 </script>

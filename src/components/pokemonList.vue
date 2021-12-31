@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h3 class="flex justify-center text-4xl">Pokedex</h3>
+    <h3 class="flex justify-center text-4xl p-2">Pokedex</h3>
     <div class="list-of-pkmn">
       <div v-for="pkmn in pokemon" :key="pkmn.id">
         <router-link

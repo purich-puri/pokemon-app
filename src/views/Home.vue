@@ -24,6 +24,5 @@ export default {
 <style scoped>
 .home {
   height: 100%;
-  background-color: antiquewhite;
 }
 </style>
